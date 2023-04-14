@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Calculator</title>
+    <style>
+      #calculator {
+        border: 2px solid #ccc;
+        border-radius: 5px;
+        width: 300px;
+        margin: 0 auto;
+        padding: 10px;
+        background-color: #f0f0f0;
+      }
+
+      #display {
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 5px;
+        margin-bottom: 10px;
+        text-align: right;
+      }
+
+      #expression {
+        margin: 0;
+        font-size: 14px;
+      }
+
+      #result {
+        margin: 0;
+        font-size: 24px;
+      }
+
+      #buttons {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      button {
+        font-size: 18px;
+        padding: 10px;
+        margin: 5px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: #eee;
+      }
+
+      button:hover {
+        background-color: #ccc;
+      }
+
+      button:focus {
+        outline: none;
+        box-shadow: 0px 0px 3px 2px rgba(0, 0, 0, 0.2);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="calculator">
+      <div id="display">
+        <p id="expression"></p>
+        <h2 id="result"></h2>
+      </div>
+      <div id="buttons">
+        <button id="clear">C</button>
+        <button id="divide">/</button>
+        <button id="multiply">*</button>
+        <button id="seven">7</button>
+        <button id="eight">8</button>
+        <button id="nine">9</button>
+        <button id="subtract">-</button>
+        <button id="four">4</button>
+        <button id="five">5</button>
+        <button id="six">6</button>
+        <button id="add">+</button>
+        <button id="one">1</button>
+        <button id="two">2</button>
+        <button id="three">3</button>
+        <button id="decimal">.</button>
+        <button id="equals">=</button>
+        <button id="zero">0</button>
+      </div>
+    </div>
+
+    <script>
+      const buttons = document.querySelectorAll("#buttons button");
+      const expression = document.getElementById("expression");
+      const result = document.getElementById("result");
+
+      let currentExpression = "";
+      let currentResult = "";
+
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const buttonValue = button.textContent;
+
+          switch (buttonValue) {
+            case "C":
+              currentExpression = "";
+              currentResult = "";
+              break;
+            case "+":
+            case "-":
+            case "*":
+            case "/":
+            case ".":
+              currentExpression += buttonValue;
+              break;
+            case "=":
+              currentResult = eval(currentExpression);
+              break;
+            default:
+              currentExpression += buttonValue;
+              break;
+          }
+
+          expression.textContent = currentExpression;
+          result.textContent = currentResult;
+        });
+      });
+    </script>
+  </body>
+</html>
